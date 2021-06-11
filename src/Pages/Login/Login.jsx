@@ -1,8 +1,8 @@
 import React from "react";
-import { Col, Form,Row } from "react-bootstrap";
+import { Col, Container, Form,Row } from "react-bootstrap";
 function Login() {
   return (
-    <div>
+    <Container>
         <Row className="justify-content-center">
           <Col md={4}>
             <Form>
@@ -17,7 +17,7 @@ function Login() {
             </Form>
           </Col>
         </Row>
-    </div>
+    </Container>
   );
 }
 
