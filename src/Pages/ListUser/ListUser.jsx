@@ -11,7 +11,6 @@ function ListUser() {
     axios.get("http://localhost/Compras/usuario/listAll").then(function (response){
         if(response.data.codigo === 1){
             setUser(response.data.data);
-            console.log(response.data.data);
         }else{
             swal("Erro", "Ao Pegar os usuários", "error");
         }
@@ -19,6 +18,29 @@ function ListUser() {
         swal("Erro", "Ao enviar ao servidor", "error");
     })
   }, []);
+
+  const deleteUser = function(id){
+    swal({
+      title: "Atenção",
+      text: "Deseja excluir este usuário ?",
+      icon: "warning",
+      buttons: ["Cancelar", "Deletar"],
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        axios.get("http://localhost/Compras/usuario/desativar/" + id).then(function (response){
+          if(response.data.codigo === 1){
+            swal("Sucesso", "Usiário deletado com sucesso", "success");
+          }else{
+            swal("Erro", "Erro ao deletar o usuário", "error");
+          }
+        },function(){
+          swal("Erro", "Ao enviar ao servidor", "error");
+        })
+      }
+    });
+  }
 
   return (
     <Container className="mt-5">
@@ -44,7 +66,7 @@ function ListUser() {
                     <td>
                     <ButtonGroup  aria-label="outlined primary button group">
                         <Button color="primary"><EditIcon/></Button>
-                        <Button color="secondary"><DeleteIcon/></Button>
+                        <Button onClick={() => deleteUser(user.id_usuario)} color="secondary"><DeleteIcon/></Button>
                     </ButtonGroup>
                     </td>
                 </tr>

@@ -26,6 +26,7 @@ function FormCadUser() {
     setPassword("");
     setName("");
     setTypeUser("");
+    setConfirmPassword("");
     setEnviado(false);
   }
 
@@ -73,29 +74,6 @@ function FormCadUser() {
   return (
     <Container className="mt-5">
       <Row>
-        <Col md={4} xs={4}>
-          <Card>
-            <Card.Body className="text-center">
-              <Image className="img_avatar" src={avtar1} roundedCircle ></Image>
-              <Card.Title className="mt-3">{userName === "" ? "Usuário" : userName}</Card.Title>
-              <Card.Text>
-                {name === "" ? "Nome Completo" : name}
-              </Card.Text>
-            </Card.Body>
-            <Card.Footer className="text-center p-2">
-              <input
-                accept="image/*"
-                className="input-file mb-0"
-                id="contained-button-file"
-                multiple
-                type="file"
-              />
-              <label className="label-upload" htmlFor="contained-button-file">
-                <Button className="btn-upload" variant="outlined" component="span" color="primary">Upload Foto</Button>
-              </label>
-            </Card.Footer>
-          </Card>
-        </Col>
         <Col md={8} xs={8}>
           <Card>
             <Card.Header>Cadastro de Usuarios</Card.Header>
@@ -165,6 +143,29 @@ function FormCadUser() {
             </Card.Body>
             <Card.Footer className="text-right">
               <Button variant="contained" type="submit" color="primary" onClick={handleSubmit}>Cadastrar</Button>
+            </Card.Footer>
+          </Card>
+        </Col>
+        <Col md={4} xs={4}>
+          <Card>
+            <Card.Body className="text-center">
+              <Image className="img_avatar" src={avtar1} roundedCircle ></Image>
+              <Card.Title className="mt-3">{userName === "" ? "Usuário" : userName}</Card.Title>
+              <Card.Text>
+                {name === "" ? "Nome Completo" : name}
+              </Card.Text>
+            </Card.Body>
+            <Card.Footer className="text-center p-2">
+              <input
+                accept="image/*"
+                className="input-file mb-0"
+                id="contained-button-file"
+                multiple
+                type="file"
+              />
+              <label className="label-upload" htmlFor="contained-button-file">
+                <Button className="btn-upload" variant="outlined" component="span" color="primary">Upload Foto</Button>
+              </label>
             </Card.Footer>
           </Card>
         </Col>
