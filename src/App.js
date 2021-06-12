@@ -4,7 +4,7 @@ import NavBar from './Components/NavBar/NavBar';
 import CadUser from './Pages/CadUser/CadUser';
 import ListUser from './Pages/ListUser/ListUser';
 import Login from './Pages/Login/Login';
-import NotFound from './Pages/NotFoud/NotFound';
+import Notfound from './Pages/Notfound/Notfound';
 function App() {
   return (
        <Router>
@@ -14,7 +14,7 @@ function App() {
             <Route path="/cad_usuario" component={CadUser}/>
             <Route path="/ListUser" component={ListUser}/>
             <Route path="/ListUser" component={ListUser}/>
-            <Route path="/*" component={NotFound}/>
+            <Route path="/*" component={Notfound}/>
         </Switch>
       </Router>
   );
