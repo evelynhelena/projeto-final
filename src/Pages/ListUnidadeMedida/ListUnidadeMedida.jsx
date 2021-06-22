@@ -6,11 +6,11 @@ import swal from "sweetalert";
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 function ListUser() {
-  const [users, setUser] = useState([]);
+  const [unidades, setUnidades] = useState([]);
   useEffect(() => {
-    axios.get("http://localhost/Compras/usuario/listAll").then(function (response){
+    axios.get("http://localhost/Compras/UnidMedida/listAll").then(function (response){
         if(response.data.codigo === 1){
-            setUser(response.data.data);
+            setUnidades(response.data.data);
         }else{
             swal("Erro", "Ao Pegar os usuários", "error");
         }
@@ -19,7 +19,7 @@ function ListUser() {
     })
   }, []);
 
-  const deleteUser = function(id){
+  const deleteUniMedida = function(id){
     swal({
       title: "Atenção",
       text: "Deseja excluir este usuário ?",
@@ -29,11 +29,11 @@ function ListUser() {
     })
     .then((willDelete) => {
       if (willDelete) {
-        axios.get("http://localhost/Compras/usuario/desativar/" + id).then(function (response){
+        axios.get("http://localhost/Compras/UnidMedida/desativar/" + id).then(function (response){
           if(response.data.codigo === 1){
-            swal("Sucesso", "Usiário deletado com sucesso", "success");
+            swal("Sucesso", "Unidade de medida deletada com sucesso", "success");
           }else{
-            swal("Erro", "Erro ao deletar o usuário", "error");
+            swal("Erro", "Erro ao deletar a unidade de medida", "error");
           }
         },function(){
           swal("Erro", "Ao enviar ao servidor", "error");
@@ -50,25 +50,23 @@ function ListUser() {
             <thead>
               <tr>
                 <th>ID</th>
+                <th>Sigla</th>
                 <th>Usuário</th>
-                <th>Senha</th>
-                <th>Nome</th>
-                <th>Tipo Usuário</th>
+                <th>Descrição</th>
                 <th>Ações</th>
               </tr>
             </thead>
             <tbody>
-            {users.map((user) => 
-                <tr key={user.id_usuario}>
-                    <td>{user.id_usuario}</td>
-                    <td>{user.usuario}</td>
-                    <td>{user.senha}</td>
-                    <td>{user.nome}</td>
-                    <td>{user.tipo}</td>
+            {unidades.map((unidade) => 
+                <tr key={unidade.id}>
+                    <td>{unidade.id}</td>
+                    <td>{unidade.sigla}</td>
+                    <td>{unidade.usuario}</td>
+                    <td>{unidade.descricao}</td>
                     <td>
                     <ButtonGroup  aria-label="outlined primary button group">
                         <Button color="primary"><EditIcon/></Button>
-                        <Button onClick={() => deleteUser(user.id_usuario)} color="secondary"><DeleteIcon/></Button>
+                        <Button onClick={() => deleteUniMedida(unidade.id)} color="secondary"><DeleteIcon/></Button>
                     </ButtonGroup>
                     </td>
                 </tr>
