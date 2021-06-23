@@ -31,7 +31,9 @@ function ListUser() {
       if (willDelete) {
         axios.get("http://localhost/Compras/usuario/desativar/" + id).then(function (response){
           if(response.data.codigo === 1){
-            swal("Sucesso", "Usiário deletado com sucesso", "success");
+            swal("Sucesso", "Usiário deletado com sucesso", "success").then(function(){
+              window.location.reload(true);
+            });
           }else{
             swal("Erro", "Erro ao deletar o usuário", "error");
           }

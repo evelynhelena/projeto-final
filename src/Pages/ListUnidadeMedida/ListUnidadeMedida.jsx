@@ -5,8 +5,10 @@ import { Table, Row, Col } from "react-bootstrap";
 import swal from "sweetalert";
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
+import ModalUpdateUnidade from "../../Components/ModalUpdateUnidade/ModalUpdateUnidade";
 function ListUser() {
   const [unidades, setUnidades] = useState([]);
+  const [openModal, setOpenModal] = useState(false);
   useEffect(() => {
     axios.get("http://localhost/Compras/UnidMedida/listAll").then(function (response){
         if(response.data.codigo === 1){
@@ -31,7 +33,9 @@ function ListUser() {
       if (willDelete) {
         axios.get("http://localhost/Compras/UnidMedida/desativar/" + id).then(function (response){
           if(response.data.codigo === 1){
-            swal("Sucesso", "Unidade de medida deletada com sucesso", "success");
+            swal("Sucesso", "Unidade de medida deletada com sucesso", "success").then(function(){
+              window.location.reload(true);
+            });
           }else{
             swal("Erro", "Erro ao deletar a unidade de medida", "error");
           }
@@ -42,8 +46,13 @@ function ListUser() {
     });
   }
 
+  const editUnidade = function(id){
+    setOpenModal(true);
+  }
+
   return (
     <Container className="mt-5">
+    <ModalUpdateUnidade open={openModal}></ModalUpdateUnidade>
       <Row>
         <Col>
           <Table striped bordered hover className="text-center">
@@ -65,7 +74,7 @@ function ListUser() {
                     <td>{unidade.descricao}</td>
                     <td>
                     <ButtonGroup  aria-label="outlined primary button group">
-                        <Button color="primary"><EditIcon/></Button>
+                        <Button onClick={() => editUnidade(unidade.id)} color="primary"><EditIcon/></Button>
                         <Button onClick={() => deleteUniMedida(unidade.id)} color="secondary"><DeleteIcon/></Button>
                     </ButtonGroup>
                     </td>
