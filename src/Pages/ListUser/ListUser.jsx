@@ -5,8 +5,11 @@ import { Table, Row, Col } from "react-bootstrap";
 import swal from "sweetalert";
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
+import ModalUpdateUser from "../../Components/ModalUpdateUser/ModalUpdateUser";
 function ListUser() {
   const [users, setUser] = useState([]);
+  const [userItem, setUserItem] = useState();
+  const [openModal, setOpenModal] = useState();
   const getUser = function (){
       axios.get("http://localhost/Compras/usuario/listAll").then(function (response){
         if(response.data.codigo === 1){
@@ -47,8 +50,14 @@ function ListUser() {
     });
   }
 
+  const editUser = function(unidade){
+    setUserItem(unidade);
+    setOpenModal(true);
+  }
+
   return (
     <Container className="mt-5">
+     {openModal && <ModalUpdateUser open={openModal} user={userItem}/>}
       <Row>
         <Col>
           <Table striped bordered hover className="text-center">
@@ -72,7 +81,7 @@ function ListUser() {
                     <td>{user.tipo}</td>
                     <td>
                     <ButtonGroup  aria-label="outlined primary button group">
-                        <Button color="primary"><EditIcon/></Button>
+                        <Button color="primary"onClick={() => editUser(user)}><EditIcon/></Button>
                         <Button onClick={() => deleteUser(user.id_usuario)} color="secondary"><DeleteIcon/></Button>
                     </ButtonGroup>
                     </td>

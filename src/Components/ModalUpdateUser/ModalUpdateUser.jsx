@@ -1,19 +1,15 @@
 import React, { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import { Button } from "react-bootstrap";
-function ModalUpdateUser(props) {
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+function ModalUpdateUser({open, user}) {
+ console.log(user);
+  const handleClose = () => {
+    window.location.reload(true);
+  };
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
-        Launch static backdrop modal
-      </Button>
-
       <Modal
-        show={show}
+        show={open}
         onHide={handleClose}
         backdrop="static"
         keyboard={false}
