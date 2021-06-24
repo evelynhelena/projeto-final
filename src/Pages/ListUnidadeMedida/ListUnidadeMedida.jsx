@@ -9,7 +9,9 @@ import ModalUpdateUnidade from "../../Components/ModalUpdateUnidade/ModalUpdateU
 function ListUser() {
   const [unidades, setUnidades] = useState([]);
   const [openModal, setOpenModal] = useState(false);
-  useEffect(() => {
+  const [unidadeItem, setUnidadeItem] = useState('');
+
+  const unidadeMedida = function(){
     axios.get("http://localhost/Compras/UnidMedida/listAll").then(function (response){
         if(response.data.codigo === 1){
             setUnidades(response.data.data);
@@ -19,6 +21,10 @@ function ListUser() {
     },function(){
         swal("Erro", "Ao enviar ao servidor", "error");
     })
+  }
+
+  useEffect(() => {
+    unidadeMedida();
   }, []);
 
   const deleteUniMedida = function(id){
@@ -34,7 +40,7 @@ function ListUser() {
         axios.get("http://localhost/Compras/UnidMedida/desativar/" + id).then(function (response){
           if(response.data.codigo === 1){
             swal("Sucesso", "Unidade de medida deletada com sucesso", "success").then(function(){
-              window.location.reload(true);
+              unidadeMedida();
             });
           }else{
             swal("Erro", "Erro ao deletar a unidade de medida", "error");
@@ -46,13 +52,14 @@ function ListUser() {
     });
   }
 
-  const editUnidade = function(id){
+  const editUnidade = function(unidade){
+    setUnidadeItem(unidade);
     setOpenModal(true);
   }
 
   return (
     <Container className="mt-5">
-    <ModalUpdateUnidade open={openModal}></ModalUpdateUnidade>
+    {openModal && <ModalUpdateUnidade open={openModal} unidade={unidadeItem}/>}
       <Row>
         <Col>
           <Table striped bordered hover className="text-center">
@@ -70,11 +77,11 @@ function ListUser() {
                 <tr key={unidade.id}>
                     <td>{unidade.id}</td>
                     <td>{unidade.sigla}</td>
-                    <td>{unidade.usuario}</td>
+                    <td>{unidade.nome}</td>
                     <td>{unidade.descricao}</td>
                     <td>
                     <ButtonGroup  aria-label="outlined primary button group">
-                        <Button onClick={() => editUnidade(unidade.id)} color="primary"><EditIcon/></Button>
+                        <Button onClick={() => editUnidade(unidade)} color="primary"><EditIcon/></Button>
                         <Button onClick={() => deleteUniMedida(unidade.id)} color="secondary"><DeleteIcon/></Button>
                     </ButtonGroup>
                     </td>

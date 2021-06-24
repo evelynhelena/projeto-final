@@ -23,7 +23,6 @@ function ForCadUnidadeMedida() {
     await axios
       .get("http://localhost/Compras/usuario/listAll")
       .then(function (response) {
-        console.log(response.data.data);
         setUsers(response.data.data);
       });
   };
@@ -52,8 +51,6 @@ function ForCadUnidadeMedida() {
       sigla: siga,
       descricao: descricao,
     };
-
-    console.log(data);
 
     errorUsuario = data.usuario.trim().length === 0;
     errorSigla = data.sigla.trim().length === 0;

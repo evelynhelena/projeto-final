@@ -7,8 +7,8 @@ import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 function ListUser() {
   const [users, setUser] = useState([]);
-  useEffect(() => {
-    axios.get("http://localhost/Compras/usuario/listAll").then(function (response){
+  const getUser = function (){
+      axios.get("http://localhost/Compras/usuario/listAll").then(function (response){
         if(response.data.codigo === 1){
             setUser(response.data.data);
         }else{
@@ -16,7 +16,10 @@ function ListUser() {
         }
     },function(){
         swal("Erro", "Ao enviar ao servidor", "error");
-    })
+    });
+  }
+  useEffect(() => {
+    getUser();
   }, []);
 
   const deleteUser = function(id){
@@ -32,7 +35,7 @@ function ListUser() {
         axios.get("http://localhost/Compras/usuario/desativar/" + id).then(function (response){
           if(response.data.codigo === 1){
             swal("Sucesso", "Usiário deletado com sucesso", "success").then(function(){
-              window.location.reload(true);
+              getUser();
             });
           }else{
             swal("Erro", "Erro ao deletar o usuário", "error");

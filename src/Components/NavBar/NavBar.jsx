@@ -4,7 +4,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 function NavBar() {
   return (  
       <Navbar bg="dark" variant="dark">
-        <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+        <Navbar.Brand>E-Comerce</Navbar.Brand>
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
           <Nav>
