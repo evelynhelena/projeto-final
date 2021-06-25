@@ -8,7 +8,7 @@
 
 .img_pride{
     width:100%;
-    max-width: 70%;
+    max-width: 80%;
 }
 
 .text-welcome{
@@ -19,9 +19,19 @@
 .form-login{
     -webkit-box-shadow: 0px 0px 22px -1px #000000; 
     box-shadow: 0px 0px 22px -1px #000000;
+    background-color: #fff;
 }
 
 .img_bandeira{
     width: 100%;
     max-width:50%;
+}
+
+.container-principal{
+    align-items: center;
+    height: 100vh;
+    display: flex;
+    width: 100%;
+    background-image: linear-gradient(to right top, #361253, #400f52, #490c51, #51074f, #59034d);
+    justify-content: center;
 }

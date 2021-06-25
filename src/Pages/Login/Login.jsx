@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { Col, Container, Form, Row, Card,Image } from "react-bootstrap";
+import { Col, Form, Row, Card,Image,Container } from "react-bootstrap";
 import TextField from "@material-ui/core/TextField";
 import ValidaCampos from "../../Components/ValidaCompos/ValidaCampos";
 import Button from "@material-ui/core/Button";
 import axios from "axios";
 import swal from "sweetalert";
-import pride from "../../Img/pride.png";
+import pride from "../../Img/people.jpg";
 import bandeira from "../../Img/bandeira.gif";
 import { useHistory } from "react-router-dom";
 import "./Login.css";
@@ -45,9 +45,10 @@ function Login() {
   };
 
   return (
-    <Container className="mt-5">
-      <div>
-        <Form noValidate autoComplete="off" className="p-3 form-login">
+    <div className="container-principal">
+      <div className="box-login">
+      <Container className="p-3 form-login">
+        <Form noValidate autoComplete="off">
           <Row className="justify-content-center">
             <Col md={4}>
               <Image className="img_bandeira" src={bandeira}  ></Image>
@@ -106,8 +107,9 @@ function Login() {
             </Col>
           </Row>
         </Form>
+      </Container>
       </div>
-    </Container>
+    </div>
   );
 }
 

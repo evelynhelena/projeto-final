@@ -27,6 +27,7 @@ function ModalUpdateUser({ open, user }) {
     setTypeUser("");
     setConfirmPassword("");
     setEnviado(false);
+    window.location.reload(true);
   }
 
   console.log(user);
@@ -66,8 +67,10 @@ function ModalUpdateUser({ open, user }) {
           .post("http://localhost/Compras/usuario/alterar", data)
           .then(function (response) {
             if (response.data.codigo === 1) {
-              swal("Sucesso", "Usuário alterado com sucesso", "success");
-              resetCampo();
+              swal("Sucesso", "Usuário alterado com sucesso", "success")
+              .then(function(){
+                resetCampo();
+              });
             } else {
               swal("Erro", "Erro ao alterar o usuário", "error");
             }
