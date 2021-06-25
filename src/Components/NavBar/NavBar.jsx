@@ -8,10 +8,11 @@ function NavBar() {
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
           <Nav>
-            <LinkContainer to='/CadUnidadeMedida'><Nav.Link  href="#home">Cadastro de unidade de medida</Nav.Link></LinkContainer>
+            <LinkContainer to='/CadUnidadeMedida'><Nav.Link>Cadastro de unidade de medida</Nav.Link></LinkContainer>
             <LinkContainer to='/cad_usuario'><Nav.Link to='/cad_usuario'>Cadastro de Usuário</Nav.Link></LinkContainer>
             <LinkContainer to='/ListUnidadeMedida'><Nav.Link>Listagem de unidade de medida</Nav.Link></LinkContainer>
-            <LinkContainer to='/ListUser'><Nav.Link href="#user">Listagem de Usuários</Nav.Link></LinkContainer>
+            <LinkContainer to='/ListUser'><Nav.Link>Listagem de Usuários</Nav.Link></LinkContainer>
+            <LinkContainer to='/'><Nav.Link >Sair</Nav.Link></LinkContainer>
           </Nav>
         </Navbar.Collapse>
       </Navbar>

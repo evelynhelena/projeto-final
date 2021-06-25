@@ -3,6 +3,7 @@ import axios from "axios";
 import React, { useState, useEffect}  from "react";
 import { Table, Row, Col } from "react-bootstrap";
 import swal from "sweetalert";
+import NavBar from '../../Components/NavBar/NavBar';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import ModalUpdateUnidade from "../../Components/ModalUpdateUnidade/ModalUpdateUnidade";
@@ -58,6 +59,8 @@ function ListUser() {
   }
 
   return (
+    <>
+    <NavBar />
     <Container className="mt-5">
     {openModal && <ModalUpdateUnidade open={openModal} unidade={unidadeItem}/>}
       <Row>
@@ -92,6 +95,7 @@ function ListUser() {
         </Col>
       </Row>
     </Container>
+    </>
   );
 }
 

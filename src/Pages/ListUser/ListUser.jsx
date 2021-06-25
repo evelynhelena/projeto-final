@@ -1,6 +1,7 @@
 import { Button, Container, ButtonGroup } from "@material-ui/core";
 import axios from "axios";
 import React, { useState, useEffect}  from "react";
+import NavBar from '../../Components/NavBar/NavBar';
 import { Table, Row, Col } from "react-bootstrap";
 import swal from "sweetalert";
 import EditIcon from '@material-ui/icons/Edit';
@@ -56,6 +57,8 @@ function ListUser() {
   }
 
   return (
+    <>
+    <NavBar />
     <Container className="mt-5">
      {openModal && <ModalUpdateUser open={openModal} user={userItem}/>}
       <Row>
@@ -92,6 +95,7 @@ function ListUser() {
         </Col>
       </Row>
     </Container>
+    </>
   );
 }
 
