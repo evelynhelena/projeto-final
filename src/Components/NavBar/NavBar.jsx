@@ -1,6 +1,7 @@
 import React from "react";
-import { Navbar, Nav} from "react-bootstrap";
+import { Navbar, Nav,NavDropdown} from "react-bootstrap";
 import { LinkContainer } from 'react-router-bootstrap';
+import "./NavBar.css";
 function NavBar() {
   return (  
       <Navbar bg="dark" variant="dark">
@@ -8,11 +9,15 @@ function NavBar() {
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
           <Nav>
-            <LinkContainer to='/CadUnidadeMedida'><Nav.Link>Cadastro de unidade de medida</Nav.Link></LinkContainer>
-            <LinkContainer to='/cad_usuario'><Nav.Link to='/cad_usuario'>Cadastro de Usuário</Nav.Link></LinkContainer>
-            <LinkContainer to='/ListUnidadeMedida'><Nav.Link>Listagem de unidade de medida</Nav.Link></LinkContainer>
-            <LinkContainer to='/ListUser'><Nav.Link>Listagem de Usuários</Nav.Link></LinkContainer>
-            <LinkContainer to='/'><Nav.Link >Sair</Nav.Link></LinkContainer>
+            <NavDropdown title="Usuário" id="usuario-dropdown">
+             <LinkContainer to='/cad_usuario'><NavDropdown.Item>Cadastrar</NavDropdown.Item></LinkContainer>
+             <LinkContainer to='/ListUser'><NavDropdown.Item>Listagem</NavDropdown.Item></LinkContainer>
+           </NavDropdown>
+           <NavDropdown title="Unidade de Medida" id="unidade-dropdown">
+             <LinkContainer to='/CadUnidadeMedida'><NavDropdown.Item>Cadastrar</NavDropdown.Item></LinkContainer>
+             <LinkContainer to='/ListUnidadeMedida'><NavDropdown.Item>Listagem</NavDropdown.Item></LinkContainer>
+          </NavDropdown>
+          <LinkContainer to='/'><Nav.Link >Sair</Nav.Link></LinkContainer>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
